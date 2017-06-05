@@ -1,0 +1,30 @@
+md-card {
+  margin: 0 auto;
+  width: 50%;
+}
+
+md-card > md-toolbar {
+  margin: -24px 0 24px -24px;
+  width: calc(100% + 48px);
+}
+
+
+.example-form {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+md-input-container, md-select {
+  margin-bottom: 35px;
+}
+
+.picker-input {
+  margin-top: 10px;
+}
+
+.map-card {
+  margin-bottom: 35px;
+}

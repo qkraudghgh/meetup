@@ -1,1 +1,66 @@
-{{ num }}
+<md-card>
+  <md-toolbar color="accent">
+    <span>create the Meetup!</span>
+  </md-toolbar>
+  <md-card-content>
+    <form class="example-form">
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Title" required>
+      </md-input-container>
+
+      <md-select placeholder="Category"
+                 name="category"
+                 required
+      >
+        <md-option *ngFor="let item of category" [value]="item.value">
+          {{item.viewValue}}
+        </md-option>
+      </md-select>
+
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <md-input-container>
+              <label for="time-input-1">
+                StartDate:
+              </label>
+              <input class="picker-input"
+                     id="time-input-1"
+                     [ngModel]="startDate | date: 'MMMM dd, y HH:mm'"
+                     [(dateTimePicker)]="startDate"
+                     name="startDate"
+                     mdInput
+                     readonly>
+            </md-input-container>
+          <td>
+          <md-input-container>
+            <label for="time-input-2">
+              EndDate:
+            </label>
+            <input class="picker-input"
+                   id="time-input-2"
+                   [ngModel]="endDate | date: 'MMMM dd, y HH:mm'"
+                   [(dateTimePicker)]="endDate"
+                   name="endDate"
+                   mdInput
+                   readonly>
+          </md-input-container>
+          </td>
+        </tr>
+      </table>
+
+      <md-input-container style="width: 80%; margin-right: 35px;" class="example-full-width">
+        <input mdInput placeholder="Location" required>
+      </md-input-container>
+      <button md-raised-button>Search</button>
+
+      <md-card class="map-card">
+        This area is result of Location search
+      </md-card>
+
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="Description" rows="7" required></textarea>
+      </md-input-container>
+    </form>
+  </md-card-content>
+</md-card>

@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
+import { MaterialModule } from '@angular/material';
+import { DateTimePickerModule } from 'ng-pick-datetime';
 
 import 'hammerjs';
 
@@ -33,8 +34,12 @@ import { AuthGuard } from './auth-guard.service';
     MaterialModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    DateTimePickerModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
