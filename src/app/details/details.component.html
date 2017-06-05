@@ -1,0 +1,15 @@
+<md-card class="example-card">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title><b>{{ event.name }}</b></md-card-title>
+    <md-card-subtitle>Captain: {{ event.author }}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    Participant: <span *ngFor="let name of event.participantList">{{ name }} </span> ({{ event.numOfParticipants }})
+    <p>
+      {{ event.description }}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+  </md-card-actions>
+</md-card>

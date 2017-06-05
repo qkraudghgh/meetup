@@ -1,0 +1,22 @@
+.example-icon {
+  padding: 0 14px;
+}
+
+.verified {
+  color: #00e200;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.main-logo {
+  outline: none;
+  cursor: pointer;
+  text-shadow: 2px 2px #1a0e42;
+  color: white;
+}
+
+button {
+  background-color: deeppink;
+}

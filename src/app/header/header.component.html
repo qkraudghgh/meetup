@@ -1,1 +1,8 @@
-<md-toolbar color="primary">Meetup</md-toolbar>
+<md-toolbar color="primary">
+  <span class="main-logo" routerLink="/">Meetup</span>
+  <span class="example-spacer"></span>
+  <md-icon class="example-icon verified" *ngIf="loggedIn">verified_user</md-icon>
+  <a routerLink="/create" *ngIf="loggedIn" style="margin-right: 15px;"><button md-mini-fab><md-icon class="example-icon">create</md-icon></button></a>
+  <button *ngIf="!loggedIn" (click)="onLogin()" md-raised-button>Login</button>
+  <button *ngIf="loggedIn" (click)="onLogout()" md-raised-button>Logout</button>
+</md-toolbar>

@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar',
   templateUrl: './calendar.component.html'
 })
+
 export class CalendarAppComponent {
+
   calendarOptions: Object = {
     fixedWeekCount : false,
     header: {
@@ -27,7 +28,7 @@ export class CalendarAppComponent {
       {
         id: 999,
         title: 'Repeating Event',
-        start: '2017-06-09T16:00:00'
+        start: '2017-06-09T16:00:00',
       },
       {
         id: 999,
@@ -66,9 +67,9 @@ export class CalendarAppComponent {
       },
       {
         title: 'Click for Google',
-        url: 'http://google.com/',
+        url: '/details/1',
         start: '2017-06-28'
       }
-    ]
+    ],
   };
 }

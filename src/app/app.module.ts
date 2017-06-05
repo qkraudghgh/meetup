@@ -11,13 +11,20 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CalendarAppComponent } from './calendar/calendar.component';
+import { DetailsComponent } from './details/details.component';
+import { CreateComponent } from './create/create.component';
+import { AppRoutingModule } from './app-routing-module';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CalendarAppComponent,
-    CalendarComponent
+    CalendarComponent,
+    DetailsComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +32,9 @@ import { CalendarAppComponent } from './calendar/calendar.component';
     HttpModule,
     MaterialModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
