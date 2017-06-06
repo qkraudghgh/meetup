@@ -1,0 +1,30 @@
+.comment {
+  width: 100%;
+}
+
+.detail-title {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+div.content > div.header {
+}
+
+div.content > div.header > div.meta {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+div.content > div.header > div.meta > span {
+ color: #565656;
+}
+
+.location, .detail {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.location > .content > img {
+  width: 100%;
+}
