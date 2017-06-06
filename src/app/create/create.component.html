@@ -1,66 +1,62 @@
-<md-card>
-  <md-toolbar color="accent">
-    <span>create the Meetup!</span>
-  </md-toolbar>
-  <md-card-content>
-    <form class="example-form">
-      <md-input-container class="example-full-width">
-        <input mdInput placeholder="Title" required>
-      </md-input-container>
-
-      <md-select placeholder="Category"
-                 name="category"
-                 required
+<form class="ui form">
+  <h4 class="ui dividing header">Meetup Information</h4>
+  <div class="two fields">
+    <div class="required field">
+      <label>Title</label>
+      <input type="text" name="shipping[first-name]" placeholder="Meetup Title">
+    </div>
+    <div class="required field">
+      <label>Category</label>
+      <select class="ui fluid dropdown">
+        <option [value]="">Choose the category</option>
+        <option *ngFor="let item of category" [value]="item.value">{{ item.viewValue }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="required field">
+      <label>StartDate</label>
+      <input class="picker-input" id="time-input-1"
+             [ngModel]="startDate | date: 'MMMM dd, y HH:mm'"
+             [(dateTimePicker)]="startDate"
+             name="startDate"
+             placeholder="Click and Set Time"
+             readonly
       >
-        <md-option *ngFor="let item of category" [value]="item.value">
-          {{item.viewValue}}
-        </md-option>
-      </md-select>
-
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <md-input-container>
-              <label for="time-input-1">
-                StartDate:
-              </label>
-              <input class="picker-input"
-                     id="time-input-1"
-                     [ngModel]="startDate | date: 'MMMM dd, y HH:mm'"
-                     [(dateTimePicker)]="startDate"
-                     name="startDate"
-                     mdInput
-                     readonly>
-            </md-input-container>
-          <td>
-          <md-input-container>
-            <label for="time-input-2">
-              EndDate:
-            </label>
-            <input class="picker-input"
-                   id="time-input-2"
-                   [ngModel]="endDate | date: 'MMMM dd, y HH:mm'"
-                   [(dateTimePicker)]="endDate"
-                   name="endDate"
-                   mdInput
-                   readonly>
-          </md-input-container>
-          </td>
-        </tr>
-      </table>
-
-      <md-input-container style="width: 80%; margin-right: 35px;" class="example-full-width">
-        <input mdInput placeholder="Location" required>
-      </md-input-container>
-      <button md-raised-button>Search</button>
-
-      <md-card class="map-card">
-        This area is result of Location search
-      </md-card>
-
-      <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Description" rows="7" required></textarea>
-      </md-input-container>
-    </form>
-  </md-card-content>
-</md-card>
+    </div>
+    <div class="required field">
+      <label>EndDate</label>
+      <input class="picker-input" id="time-input-2"
+             [ngModel]="endDate | date: 'MMMM dd, y HH:mm'"
+             [(dateTimePicker)]="endDate"
+             name="endDate"
+             placeholder="Click and Set Time"
+             readonly
+      >
+    </div>
+  </div>
+  <h4 class="ui dividing header">Location Information</h4>
+  <div class="required field">
+    <label>Search Location</label>
+    <div class="ui action input">
+      <input type="text" value="">
+      <button (click)="searchLocation()" class="ui teal right labeled icon button">
+        <i class="search icon"></i>
+        Search
+      </button>
+    </div>
+  </div>
+  <h4 *ngIf="finishSearch" class="ui dividing header">Check location</h4>
+  <div *ngIf="finishSearch" class="ui card location">
+    <div class="content">
+      <img class="img-map" src="https://maps.googleapis.com/maps/api/staticmap?center=37.534213,126.99753&amp;zoom=17&amp;size=500x500&amp;key=AIzaSyAr7ve6s3CEVMlWqOZI2VdFGisIjpc0Wuk&amp;sensor=false&amp;markers=37.534213,126.99753">
+    </div>
+  </div>
+  <h4 class="ui dividing header">Description</h4>
+  <div class="required field">
+    <label>Description</label>
+    <textarea rows="3"></textarea>
+  </div>
+  <div class="ui green button" tabindex="0">Create Meetup</div>
+  <div (click)="clear()" class="ui red button" tabindex="0">Clear</div>
+</form>

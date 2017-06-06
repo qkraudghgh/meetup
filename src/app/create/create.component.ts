@@ -10,6 +10,7 @@ export class CreateComponent implements OnInit {
   num: number;
   startDate: any;
   endDate: any;
+  finishSearch: boolean;
 
   category = [
     {value: 'meal', viewValue: 'Meal'},
@@ -23,5 +24,13 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.num = this.route.snapshot.params['id'];
+  }
+
+  searchLocation() {
+    this.finishSearch = true;
+  }
+
+  clear() {
+    this.finishSearch = false;
   }
 }
