@@ -1,3 +1,9 @@
+.ui.card.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
 .comment {
   width: 100%;
 }
@@ -20,8 +26,13 @@ div.content > div.header > div.meta > span {
  color: #565656;
 }
 
-.location, .detail {
-  width: 50%;
+.detail {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.location {
+  width: 80%;
   margin: 0 auto;
 }
 

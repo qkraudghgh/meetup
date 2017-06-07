@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+declare const ResizeSensor: any;
 
 @Component({
-  templateUrl: './calendar.component.html'
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.css']
 })
 
-export class CalendarAppComponent {
+export class CalendarAppComponent implements OnInit {
 
   calendarOptions: Object = {
     fixedWeekCount : false,
@@ -14,6 +17,7 @@ export class CalendarAppComponent {
       right: 'month,basicWeek,basicDay'
     },
     editable: false,
+    height: 'parent',
     eventLimit: true, // allow "more" link when too many events
     events: [
       {
@@ -72,4 +76,7 @@ export class CalendarAppComponent {
       }
     ],
   };
+
+  ngOnInit(): void {
+  }
 }

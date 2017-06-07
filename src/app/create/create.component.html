@@ -1,62 +1,66 @@
-<form class="ui form">
-  <h4 class="ui dividing header">Meetup Information</h4>
-  <div class="two fields">
-    <div class="required field">
-      <label>Title</label>
-      <input type="text" name="shipping[first-name]" placeholder="Meetup Title">
-    </div>
-    <div class="required field">
-      <label>Category</label>
-      <select class="ui fluid dropdown">
-        <option [value]="">Choose the category</option>
-        <option *ngFor="let item of category" [value]="item.value">{{ item.viewValue }}</option>
-      </select>
-    </div>
+<div class="ui card">
+  <div class="content">
+    <form class="ui form">
+      <h4 class="ui dividing header">Meetup Information</h4>
+      <div class="two fields">
+        <div class="required field">
+          <label>Title</label>
+          <input type="text" name="shipping[first-name]" placeholder="Meetup Title">
+        </div>
+        <div class="required field">
+          <label>Category</label>
+          <select class="ui fluid dropdown">
+            <option [value]="">Choose the category</option>
+            <option *ngFor="let item of category" [value]="item.value">{{ item.viewValue }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="required field">
+          <label>StartDate</label>
+          <input class="picker-input" id="time-input-1"
+                 [ngModel]="startDate | date: 'MMMM dd, y HH:mm'"
+                 [(dateTimePicker)]="startDate"
+                 name="startDate"
+                 placeholder="Click and Set Time"
+                 readonly
+          >
+        </div>
+        <div class="required field">
+          <label>EndDate</label>
+          <input class="picker-input" id="time-input-2"
+                 [ngModel]="endDate | date: 'MMMM dd, y HH:mm'"
+                 [(dateTimePicker)]="endDate"
+                 name="endDate"
+                 placeholder="Click and Set Time"
+                 readonly
+          >
+        </div>
+      </div>
+      <h4 class="ui dividing header">Location Information</h4>
+      <div class="required field">
+        <label>Search Location</label>
+        <div class="ui action input">
+          <input type="text" value="">
+          <button (click)="searchLocation()" class="ui teal right labeled icon button">
+            <i class="search icon"></i>
+            Search
+          </button>
+        </div>
+      </div>
+      <h4 *ngIf="finishSearch" class="ui dividing header">Check location</h4>
+      <div *ngIf="finishSearch" class="ui card location">
+        <div class="content">
+          <img class="img-map" src="http://www.germinador.com/simple/wp-content/uploads/2013/09/500x500-490x490.gif">
+        </div>
+      </div>
+      <h4 class="ui dividing header">Description</h4>
+      <div class="required field">
+        <label>Description</label>
+        <textarea rows="3"></textarea>
+      </div>
+      <div class="ui green button" tabindex="0">Create Meetup</div>
+      <div (click)="clear()" class="ui red button" tabindex="0">Clear</div>
+    </form>
   </div>
-  <div class="two fields">
-    <div class="required field">
-      <label>StartDate</label>
-      <input class="picker-input" id="time-input-1"
-             [ngModel]="startDate | date: 'MMMM dd, y HH:mm'"
-             [(dateTimePicker)]="startDate"
-             name="startDate"
-             placeholder="Click and Set Time"
-             readonly
-      >
-    </div>
-    <div class="required field">
-      <label>EndDate</label>
-      <input class="picker-input" id="time-input-2"
-             [ngModel]="endDate | date: 'MMMM dd, y HH:mm'"
-             [(dateTimePicker)]="endDate"
-             name="endDate"
-             placeholder="Click and Set Time"
-             readonly
-      >
-    </div>
-  </div>
-  <h4 class="ui dividing header">Location Information</h4>
-  <div class="required field">
-    <label>Search Location</label>
-    <div class="ui action input">
-      <input type="text" value="">
-      <button (click)="searchLocation()" class="ui teal right labeled icon button">
-        <i class="search icon"></i>
-        Search
-      </button>
-    </div>
-  </div>
-  <h4 *ngIf="finishSearch" class="ui dividing header">Check location</h4>
-  <div *ngIf="finishSearch" class="ui card location">
-    <div class="content">
-      <img class="img-map" src="http://www.germinador.com/simple/wp-content/uploads/2013/09/500x500-490x490.gif">
-    </div>
-  </div>
-  <h4 class="ui dividing header">Description</h4>
-  <div class="required field">
-    <label>Description</label>
-    <textarea rows="3"></textarea>
-  </div>
-  <div class="ui green button" tabindex="0">Create Meetup</div>
-  <div (click)="clear()" class="ui red button" tabindex="0">Clear</div>
-</form>
+</div>
