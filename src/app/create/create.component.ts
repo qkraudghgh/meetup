@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ServerService } from '../server.service';
 
 @Component({
   templateUrl: './create.component.html',
@@ -19,7 +20,7 @@ export class CreateComponent implements OnInit {
     {value: 'coding', viewValue: 'Coding'}
   ];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private serverService: ServerService) {
   }
 
   ngOnInit() {
@@ -27,7 +28,6 @@ export class CreateComponent implements OnInit {
   }
 
   searchLocation() {
-    this.finishSearch = true;
   }
 
   clear() {

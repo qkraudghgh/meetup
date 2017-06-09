@@ -14,10 +14,11 @@ export class AuthService {
 
   login() {
     this.loggenIn = true;
+    location.href = '/';
   }
-
   logout() {
     this.loggenIn = false;
+    localStorage.clear();
     location.reload();
   }
 }

@@ -14,28 +14,32 @@ import { CreateComponent } from './create/create.component';
 import { AppRoutingModule } from './app-routing-module';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { ServerService } from './server.service';
+import { AuthRedirectComponent } from './redirect/auth-redirect.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    CalendarAppComponent,
-    CalendarComponent,
-    DetailsComponent,
-    CreateComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    DateTimePickerModule
-  ],
-  providers: [
-    AuthService,
-    AuthGuard,
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        CalendarAppComponent,
+        CalendarComponent,
+        DetailsComponent,
+        CreateComponent,
+        AuthRedirectComponent,
     ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        DateTimePickerModule
+    ],
+    providers: [
+        AuthService,
+        AuthGuard,
+        ServerService,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

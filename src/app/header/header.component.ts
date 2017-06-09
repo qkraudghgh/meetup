@@ -5,10 +5,13 @@ import { AuthService } from '../auth.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
-
 })
+
 export class HeaderComponent implements OnInit {
   private loggedIn: boolean;
+  clientId = '193315155424.194788594150';
+  authUrl = 'http://localhost:4200/auth';
+
   constructor(private authService: AuthService) {
     if (localStorage.getItem('session') === 'true') {
       this.loggedIn = localStorage.getItem('session') === 'true';
@@ -19,11 +22,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  onLogin() {
-    this.authService.login();
-    this.storedToSession(this.authService.loggenIn);
   }
 
   onLogout() {

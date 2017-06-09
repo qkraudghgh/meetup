@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-declare const ResizeSensor: any;
-
 @Component({
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
