@@ -41,8 +41,8 @@
       <div class="required field">
         <label>Search Location</label>
         <div class="ui action input">
-          <input type="text" value="">
-          <button (click)="searchLocation()" class="ui teal right labeled icon button">
+          <input type="text" #location/>
+          <button (click)="searchLocation(location.value)" class="ui teal right labeled icon button">
             <i class="search icon"></i>
             Search
           </button>
@@ -51,7 +51,9 @@
       <h4 *ngIf="finishSearch" class="ui dividing header">Check location</h4>
       <div *ngIf="finishSearch" class="ui card location">
         <div class="content">
-          <img class="img-map" src="http://www.germinador.com/simple/wp-content/uploads/2013/09/500x500-490x490.gif">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="17">
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+            </sebm-google-map>
         </div>
       </div>
       <h4 class="ui dividing header">Description</h4>

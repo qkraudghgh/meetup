@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
 import { DateTimePickerModule } from 'ng-pick-datetime';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,7 +34,10 @@ import { AuthRedirectComponent } from './redirect/auth-redirect.component';
         HttpModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        DateTimePickerModule
+        DateTimePickerModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'
+        })
     ],
     providers: [
         AuthService,

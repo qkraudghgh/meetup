@@ -4,11 +4,12 @@
   margin-top: 2%;
 }
 
-.location {
+.ui.card.location {
   width: 50%;
   margin: 0 auto;
 }
 
-.location > .content > img {
+.location > .content > sebm-google-map {
   width: 100%;
+  height: 500px;
 }
