@@ -13,6 +13,14 @@ export class ServerService {
         });
     }
 
+    getCategoryList() {
+        const headers = new Headers();
+        headers.append('Authorization', `Token ${localStorage.getItem('access_token')}`);
+        return this.http.get('http://localhost:8080/category', {
+            headers: headers
+        });
+    }
+
     getLoginToken(code: string) {
         return this.http.get(`http://localhost:8080/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
     }

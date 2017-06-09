@@ -11,7 +11,7 @@
           <label>Category</label>
           <select class="ui fluid dropdown">
             <option [value]="">Choose the category</option>
-            <option *ngFor="let item of category" [value]="item.value">{{ item.viewValue }}</option>
+            <option *ngFor="let item of category" [value]="item.id">{{ item.title }}</option>
           </select>
         </div>
       </div>

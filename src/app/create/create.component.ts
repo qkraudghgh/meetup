@@ -8,23 +8,20 @@ import { ServerService } from '../server.service';
 })
 
 export class CreateComponent implements OnInit {
-  num: number;
   startDate: any;
   endDate: any;
   finishSearch: boolean;
-
-  category = [
-    {value: 'meal', viewValue: 'Meal'},
-    {value: 'drink', viewValue: 'Drink'},
-    {value: 'coffee', viewValue: 'Coffee'},
-    {value: 'coding', viewValue: 'Coding'}
-  ];
+  category: any;
 
   constructor(private route: ActivatedRoute, private serverService: ServerService) {
   }
 
   ngOnInit() {
-    this.num = this.route.snapshot.params['id'];
+      this.serverService.getCategoryList()
+          .subscribe(
+          (data) => (this.category = data.json().sort((a, b) => (a.id - b.id))),
+          (error) => (console.log(error))
+      );
   }
 
   searchLocation() {
