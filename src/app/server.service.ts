@@ -1,31 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ServerService {
-    constructor(private http: Http) {}
 
-    getEventList() {
-        const headers = new Headers();
-        headers.append('Authorization', `Token ${localStorage.getItem('access_token')}`);
-        return this.http.get('http://localhost:8080/events', {
-            headers: headers
-        });
-    }
+  constructor(private http: Http) {}
 
-    getCategoryList() {
-        const headers = new Headers();
-        headers.append('Authorization', `Token ${localStorage.getItem('access_token')}`);
-        return this.http.get('http://localhost:8080/category', {
-            headers: headers
-        });
-    }
+  private setHeader() {
+    const headers = new Headers();
+    headers.append('Authorization', `Token ${localStorage.getItem('access_token')}`);
+    return headers;
+  }
 
-    getLoginToken(code: string) {
-        return this.http.get(`http://localhost:8080/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
-    }
+  getEventList() {
+    return this.http.get('http://localhost:8080/events', {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
 
-    getGeocode(location: string) {
-      return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}&key=${'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'}`);
-    }
+  getCategoryList() {
+    return this.http.get('http://localhost:8080/category', {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
+
+  getLoginToken(code: string) {
+    return this.http.get(`http://localhost:8080/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
+  }
+
+  getGeocode(location: string) {
+    return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}& \
+    key=${'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'}`);
+  }
+
+  createEvent(req: object) {
+    return this.http.post(`http://localhost:8080/events`, req, {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
 }

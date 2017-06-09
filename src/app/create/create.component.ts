@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServerService } from '../server.service';
+import { NgForm } from '@angular/forms';
+
+declare const moment: any;
 
 @Component({
   templateUrl: './create.component.html',
@@ -8,27 +11,34 @@ import { ServerService } from '../server.service';
 })
 
 export class CreateComponent implements OnInit {
+  @ViewChild('f') eventForm: NgForm;
+
   startDate: any;
   endDate: any;
   finishSearch: boolean;
-  category: number;
+  category: any;
+  categoryId = '';
   title: string;
+  location: string;
+  locationDetail: string;
+  description: string;
   lat: number;
   lng: number;
+  requestData: object;
 
-  constructor(private route: ActivatedRoute, private serverService: ServerService) {
+  constructor(private router: Router, private serverService: ServerService) {
   }
 
   ngOnInit() {
     this.serverService.getCategoryList()
       .subscribe(
-        (data) => (this.category = data.json().sort((a, b) => (a.id - b.id))),
+        (data) => (this.category = data.sort((a, b) => (a.id - b.id))),
         (error) => (console.log(error))
       );
   }
 
-  searchLocation(location: string) {
-    this.serverService.getGeocode(location).subscribe(
+  searchLocation() {
+    this.serverService.getGeocode(this.location).subscribe(
       (data) => {
         const dataJson = data.json();
         if (dataJson.status === 'ZERO_RESULTS') {
@@ -49,5 +59,65 @@ export class CreateComponent implements OnInit {
     this.finishSearch = false;
     this.lat = null;
     this.lng = null;
+  }
+
+  onSubmit() {
+    const eventValues = this.eventForm.value;
+    if (!this.validation()) {
+      return;
+    }
+
+    this.requestData = {
+      event_title: eventValues.title,
+      category_id: parseInt(eventValues.categoryId, 10),
+      datetime_start: moment(eventValues.startDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
+      datetime_end: moment(eventValues.endDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
+      description: eventValues.description,
+      place_title: eventValues.locationDetail,
+      place_lat: this.lat,
+      place_lon: this.lng
+    };
+    return this.serverService.createEvent(this.requestData).subscribe(
+      (res) => {
+        this.router.navigateByUrl(`/details/${res.id}`);
+      }
+    );
+  }
+
+  validation() {
+    const eventValues = this.eventForm.value;
+    if (!eventValues.title) {
+      alert('Please write Title');
+      return false;
+    }
+    if (!eventValues.categoryId) {
+      alert('Please select Category');
+      return false;
+    }
+    if (!eventValues.startDate) {
+      alert('Please select StartTime');
+      return false;
+    }
+    if (!eventValues.endDate) {
+      alert('Please select EndTime');
+      return false;
+    }
+    if (!eventValues.description) {
+      alert('Please Write Description');
+      return false;
+    }
+    if (!eventValues.location) {
+      alert('Please Write location detail');
+      return false;
+    }
+    if (!this.lat || !this.lng) {
+      alert('Please Search Location');
+      return false;
+    }
+    if (moment(eventValues.endDate) - moment(eventValues.startDate) < 0) {
+      alert('End date can not be earlier than start date');
+      return false;
+    }
+    return true;
   }
 }

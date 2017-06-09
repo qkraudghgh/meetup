@@ -1,17 +1,32 @@
 <div class="ui card">
   <div class="content">
-    <form class="ui form">
+    <form class="ui form" (ngSubmit)="onSubmit()" #f="ngForm">
       <h4 class="ui dividing header">Meetup Information</h4>
       <div class="two fields">
         <div class="required field">
           <label>Title</label>
-          <input type="text" name="shipping[first-name]" placeholder="Meetup Title">
+          <input
+            type="text"
+            name="title"
+            placeholder="Meetup Title"
+            [(ngModel)]="title"
+            required
+          >
         </div>
         <div class="required field">
           <label>Category</label>
-          <select class="ui fluid dropdown">
-            <option [value]="">Choose the category</option>
-            <option *ngFor="let item of category" [value]="item.id">{{ item.title }}</option>
+          <select
+            class="ui fluid dropdown"
+            [(ngModel)]="categoryId"
+            name="categoryId"
+            required
+          >
+            <option
+              value=""
+              disabled
+              selected
+            >Choose the category</option>
+            <option *ngFor="let item of category" [(value)]="item.id">{{ item.title }}</option>
           </select>
         </div>
       </div>
@@ -24,6 +39,7 @@
                  name="startDate"
                  placeholder="Click and Set Time"
                  readonly
+                 required
           >
         </div>
         <div class="required field">
@@ -34,34 +50,50 @@
                  name="endDate"
                  placeholder="Click and Set Time"
                  readonly
+                 required
           >
         </div>
       </div>
       <h4 class="ui dividing header">Location Information</h4>
       <div class="required field">
+        <label>Location description</label>
+        <input
+          type="text"
+          name="locationDetail"
+          placeholder="Location detail"
+          [(ngModel)]="locationDetail"
+          required
+        >
+      </div>
+      <div class="required field">
         <label>Search Location</label>
         <div class="ui action input">
-          <input type="text" #location/>
-          <button (click)="searchLocation(location.value)" class="ui teal right labeled icon button">
+          <input type="text" [(ngModel)]="location" name="location"/>
+          <div (click)="searchLocation()" class="ui teal right labeled icon button">
             <i class="search icon"></i>
             Search
-          </button>
+          </div>
         </div>
       </div>
       <h4 *ngIf="finishSearch" class="ui dividing header">Check location</h4>
       <div *ngIf="finishSearch" class="ui card location">
         <div class="content">
-            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="17">
-                <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-            </sebm-google-map>
+          <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="17">
+            <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+          </sebm-google-map>
         </div>
       </div>
       <h4 class="ui dividing header">Description</h4>
       <div class="required field">
         <label>Description</label>
-        <textarea rows="3"></textarea>
+        <textarea rows="3" [(ngModel)]="description" name="description" required></textarea>
       </div>
-      <div class="ui green button" tabindex="0">Create Meetup</div>
+      <button
+        class="ui green button"
+        tabindex="0"
+        type="submit"
+        [disabled]="!f.valid"
+      >Create Meetup</button>
       <div (click)="clear()" class="ui red button" tabindex="0">Clear</div>
     </form>
   </div>
