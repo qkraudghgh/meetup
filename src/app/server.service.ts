@@ -20,7 +20,7 @@ export class ServerService {
   }
 
   getCategoryList() {
-    return this.http.get('http://localhost:8080/category', {
+    return this.http.get('http://localhost:8080/categories', {
       headers: this.setHeader()
     }).map(res => res.json());
   }
