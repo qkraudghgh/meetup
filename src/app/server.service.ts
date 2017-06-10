@@ -71,4 +71,10 @@ export class ServerService {
       headers: this.setHeader()
     }).map(res => res.json());
   }
+
+  deleteComment(eventId: number, commentId: number) {
+    return this.http.delete(`${apiRootUrl}/events/${eventId}/comments/${commentId}`, {
+      headers: this.setHeader()
+    });
+  }
 }

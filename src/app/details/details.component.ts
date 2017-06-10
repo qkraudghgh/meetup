@@ -74,16 +74,35 @@ export class DetailsComponent implements OnInit {
   getEventComments(eventId: number) {
     this.server.getEventComments(eventId).subscribe(
       (res) => {
+        let isAuth = false;
         this.comments = _.map(res, data => {
+          if (data['writer'].name === localStorage.getItem('username')) {
+            isAuth = true;
+          }
           return {
+            id: data['id'],
             authorName: data['writer'].name,
             authorImgUrl: data['writer'].avatar,
             updated: moment(data['updated_at']).fromNow(),
-            content: data['content']
+            content: data['content'],
+            isAuth: isAuth
           };
         });
       }
     );
+  }
+
+  deleteComment(commentId: number) {
+    if (confirm('Are you sure you want to delete it?')) {
+      return this.server.deleteComment(this.eventId, commentId).subscribe(
+        (res) => {
+          this.getEventComments(this.eventId);
+        },
+        (error) => {
+          alert('You can not delete it.');
+        }
+      );
+    }
   }
 
   onSubmit() {
