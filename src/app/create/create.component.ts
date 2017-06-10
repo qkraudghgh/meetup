@@ -73,7 +73,7 @@ export class CreateComponent implements OnInit {
       place: {
         title: eventValues.locationDetail,
         lat: this.lat,
-        lon: this.lat
+        lon: this.lng
       },
       datetime: {
         start: moment(eventValues.startDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
