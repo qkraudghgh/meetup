@@ -68,14 +68,18 @@ export class CreateComponent implements OnInit {
     }
 
     this.requestData = {
-      event_title: eventValues.title,
-      category_id: parseInt(eventValues.categoryId, 10),
-      datetime_start: moment(eventValues.startDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
-      datetime_end: moment(eventValues.endDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
+      title: eventValues.title,
       description: eventValues.description,
-      place_title: eventValues.locationDetail,
-      place_lat: this.lat,
-      place_lon: this.lng
+      place: {
+        title: eventValues.locationDetail,
+        lat: this.lat,
+        lon: this.lat
+      },
+      datetime: {
+        start: moment(eventValues.startDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]'),
+        end: moment(eventValues.endDate).format('YYYY-MM-DD[T]HH:mm:ss[Z]')
+      },
+      category_id: parseInt(eventValues.categoryId, 10)
     };
     return this.serverService.createEvent(this.requestData).subscribe(
       (res) => {
