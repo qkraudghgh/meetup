@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 export class CalendarAppComponent implements OnInit {
 
   events: any;
+  isLogin = false;
 
   calendarOptions: Object = {
     fixedWeekCount : false,
@@ -29,22 +30,25 @@ export class CalendarAppComponent implements OnInit {
   constructor(private server: ServerService) {}
 
   ngOnInit(): void {
-    this.server.getEventList()
-      .subscribe(
-        (res) => {
-          this.events = _.map(res, data => {
-            return {
-              title: data['title'],
-              start: data['datetime']['start'],
-              end: data['datetime']['end'],
-              url: `/details/${data['id']}`
-            };
-          });
-          this.calendarOptions['events'] = this.events;
-        },
-        (error) => {
-          alert('Fail to pull events');
-        }
-      );
+    if (localStorage.getItem('session') === 'true') {
+      this.server.getEventList()
+        .subscribe(
+          (res) => {
+            this.isLogin = true;
+            this.events = _.map(res, data => {
+              return {
+                title: data['title'],
+                start: data['datetime']['start'],
+                end: data['datetime']['end'],
+                url: `/details/${data['id']}`
+              };
+            });
+            this.calendarOptions['events'] = this.events;
+          },
+          (error) => {
+            alert('Fail to pull events');
+          }
+        );
+    }
   }
 }

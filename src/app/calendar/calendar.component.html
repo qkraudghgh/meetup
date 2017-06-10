@@ -1,5 +1,8 @@
 <div class="ui card">
-  <div class="content">
-    <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
+  <div *ngIf="isLogin" class="content">
+    <angular2-fullcalendar  [options]="calendarOptions"></angular2-fullcalendar>
+  </div>
+  <div *ngIf="!isLogin" class="content">
+    Login해주세요!
   </div>
 </div>
