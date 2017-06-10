@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+const apiRootUrl = 'http://localhost:8080';
+
 @Injectable()
 export class ServerService {
 
@@ -14,19 +16,25 @@ export class ServerService {
   }
 
   getEventList() {
-    return this.http.get('http://localhost:8080/events', {
+    return this.http.get(`${apiRootUrl}/events`, {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
+
+  getEventDetail(eventId: number) {
+    return this.http.get(`${apiRootUrl}/events/${eventId}`, {
       headers: this.setHeader()
     }).map(res => res.json());
   }
 
   getCategoryList() {
-    return this.http.get('http://localhost:8080/categories', {
+    return this.http.get(`${apiRootUrl}/categories`, {
       headers: this.setHeader()
     }).map(res => res.json());
   }
 
   getLoginToken(code: string) {
-    return this.http.get(`http://localhost:8080/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
+    return this.http.get(`${apiRootUrl}/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
   }
 
   getGeocode(location: string) {
@@ -35,7 +43,13 @@ export class ServerService {
   }
 
   createEvent(req: object) {
-    return this.http.post(`http://localhost:8080/events`, req, {
+    return this.http.post(`${apiRootUrl}/events`, req, {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
+
+  postComment(eventId: number, req: object) {
+    return this.http.post(`${apiRootUrl}/events/${eventId}/comments`, req, {
       headers: this.setHeader()
     }).map(res => res.json());
   }
