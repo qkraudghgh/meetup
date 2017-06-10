@@ -17,6 +17,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { ServerService } from './server.service';
 import { AuthRedirectComponent } from './redirect/auth-redirect.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { AuthRedirectComponent } from './redirect/auth-redirect.component';
         DetailsComponent,
         CreateComponent,
         AuthRedirectComponent,
+        EditComponent,
     ],
     imports: [
         BrowserModule,
