@@ -29,8 +29,8 @@ export class AuthRedirectComponent implements OnInit {
                 } else {
                     alert('로그인에 실패했습니다.');
                     console.log(accessToken);
-                    // localStorage.clear();
-                    // location.href = '/';
+                    localStorage.clear();
+                    location.href = '/';
                 }
 
             },
