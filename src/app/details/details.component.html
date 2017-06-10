@@ -3,50 +3,72 @@
     <h4 class="ui dividing header">Meetup Information</h4>
     <div class="ui card detail">
       <div class="content">
-        <div class="header"><span class="detail-title">배고파서 훠궈를 먹으러가는 사람들</span>
+        <div class="header"><span class="detail-title">{{ event.title }}</span><div class="ui teal tag label">{{ event.categoryTitle }}</div>
           <div class="meta">
-            made by <span class="ui orange label">@myoungho.pak</span> at <span>2 days ago</span>
+            Updated by
+            <span class="ui image label author">
+              <img src="{{ event.authorImgUrl }}">
+              {{'@' + event.author }}
+            </span>
+            at <span>{{ event.updated }}</span>
           </div>
         </div>
         <div class="meta">
-          <a class="ui teal tag label">Participant</a>
-          <span class="ui blue label">
-        @maxtortime
-      </span>
-          <span class="ui blue label">
-        @jelly
-      </span>
-          <span class="ui blue label">
-        @geogrant
-      </span>
+          Participant
+          <a class="ui image label" *ngFor="let participant of participants">
+            <img src="{{ participant.imgUrl }}">
+            @{{ participant.name }}
+          </a>
         </div>
         <p></p>
         <div class="description">
           <p style="margin-top: 25px;">
-            대림에서 맛있는 훠궈를 먹을 예정입니다. 먹을사람 여기여기 붙어라~
-            대림에서 맛있는 훠궈를 먹을 예정입니다. 먹을사람 여기여기 붙어라~
-            대림에서 맛있는 훠궈를 먹을 예정입니다. 먹을사람 여기여기 붙어라~
-            대림에서 맛있는 훠궈를 먹을 예정입니다. 먹을사람 여기여기 붙어라~
-            대림에서 맛있는 훠궈를 먹을 예정입니다. 먹을사람 여기여기 붙어라~
-            대림에서 맛있는 훠궈를 먹을 예정입니다. 먹을사람 여기여기 붙어라~
+            {{ event.description }}
           </p>
         </div>
       </div>
       <div class="extra content">
-        <button class="ui green button">Join Meetup</button>
+        <button *ngIf="!isAuthor" class="ui green button">Join Meetup</button>
+        <button *ngIf="isAuthor" class="ui red button">Edit</button>
+        <button *ngIf="isAuthor" (click)="deleteEvent()" class="ui yellow button">Delete</button>
       </div>
     </div>
-    <h4 class="ui dividing header">Check location
-      <button class="ui grey label">fold</button>
+    <h4 class="ui dividing header">Check location: {{ event.locationDetail }}
     </h4>
     <div class="ui card location">
       <div class="content">
-        <img class="img-map" src="http://www.germinador.com/simple/wp-content/uploads/2013/09/500x500-490x490.gif">
+        <sebm-google-map [latitude]="event.lat" [longitude]="event.lng" [zoom]="17">
+          <sebm-google-map-marker [latitude]="event.lat" [longitude]="event.lng"></sebm-google-map-marker>
+        </sebm-google-map>
       </div>
     </div>
-    <h4 class="ui dividing header">Comment</h4>
     <div class="ui card comment">
       <div class="content">
+        <div class="ui comments">
+          <h3 class="ui dividing header">Comments</h3>
+          <div class="comment" *ngFor="let comment of comments">
+            <a class="avatar">
+              <img src="{{ comment.authorImgUrl }}">
+            </a>
+            <div class="content">
+              <span class="author">{{'@' + comment.authorName }}</span>
+              <div class="metadata">
+                <span class="date">{{ comment.updated }}</span>
+              </div>
+              <div class="text">
+                {{ comment.content }}
+              </div>
+            </div>
+          </div>
+          <form class="ui reply form" (ngSubmit)="onSubmit()">
+            <div class="field">
+              <textarea id="commentTextarea" [(ngModel)]="comment" name="comment" rows="3"></textarea>
+            </div>
+            <button class="ui blue labeled submit icon button" type="submit">
+              <i class="icon edit"></i> Add Reply
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

@@ -48,6 +48,24 @@ export class ServerService {
     }).map(res => res.json());
   }
 
+  editEvent(eventId: number, req: object) {
+    return this.http.put(`${apiRootUrl}/events/${eventId}`, req, {
+      headers: this.setHeader()
+    });
+  }
+
+  deleteEvent(eventId: number) {
+    return this.http.delete(`${apiRootUrl}/events/${eventId}`, {
+      headers: this.setHeader()
+    });
+  }
+
+  getEventComments(eventId: number) {
+    return this.http.get(`${apiRootUrl}/events/${eventId}/comments`, {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
+
   postComment(eventId: number, req: object) {
     return this.http.post(`${apiRootUrl}/events/${eventId}/comments`, req, {
       headers: this.setHeader()

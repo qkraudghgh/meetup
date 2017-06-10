@@ -21,8 +21,12 @@ export class AuthRedirectComponent implements OnInit {
             (token) => {
                 const res = token.json();
                 const accessToken = res['token'];
+                const username = res['name'];
                 if (accessToken) {
                     localStorage.setItem('access_token', accessToken);
+                    if (username) {
+                      localStorage.setItem('username', username);
+                    }
                     this.authService.login();
                     const session = this.authService.loggenIn;
                     localStorage.setItem('session', session.toString());
