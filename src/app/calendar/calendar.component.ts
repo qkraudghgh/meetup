@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../server.service';
+
+import * as _ from 'lodash';
 
 @Component({
   templateUrl: './calendar.component.html',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CalendarAppComponent implements OnInit {
+
+  events: any;
 
   calendarOptions: Object = {
     fixedWeekCount : false,
@@ -17,64 +22,29 @@ export class CalendarAppComponent implements OnInit {
     editable: false,
     height: 'parent',
     eventLimit: true, // allow "more" link when too many events
-    events: [
-      {
-        title: 'All Day Event',
-        start: '2017-06-01'
-      },
-      {
-        title: 'Long Event',
-        start: '2017-06-07',
-        end: '2017-06-10'
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: '2017-06-09T16:00:00',
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: '2017-06-16T16:00:00'
-      },
-      {
-        title: 'Conference',
-        start: '2017-06-11',
-        end: '2016-09-13'
-      },
-      {
-        title: 'Meeting',
-        start: '2017-06-12T10:30:00',
-        end: '2017-06-12T12:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: '2017-06-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: '2017-06-12T14:30:00'
-      },
-      {
-        title: 'Happy Hour',
-        start: '2017-06-12T17:30:00'
-      },
-      {
-        title: 'Dinner',
-        start: '2017-06-12T20:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2017-06-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: '/details/1',
-        start: '2017-06-28'
-      }
-    ],
+    timeFormat: 'H:mm',
+    events: [],
   };
 
+  constructor(private server: ServerService) {}
+
   ngOnInit(): void {
+    this.server.getEventList()
+      .subscribe(
+        (res) => {
+          this.events = _.map(res, data => {
+            return {
+              title: data['title'],
+              start: data['datetime']['start'],
+              end: data['datetime']['end'],
+              url: `/details/${data['id']}`
+            };
+          });
+          this.calendarOptions['events'] = this.events;
+        },
+        (error) => {
+          alert('Fail to pull events');
+        }
+      );
   }
 }
