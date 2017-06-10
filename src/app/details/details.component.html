@@ -29,7 +29,7 @@
       </div>
       <div class="extra content">
         <button *ngIf="!isAuthor" class="ui green button">Join Meetup</button>
-        <button *ngIf="isAuthor" class="ui red button">Edit</button>
+        <button *ngIf="isAuthor" [routerLink]="['/edit', eventId]" class="ui red button">Edit</button>
         <button *ngIf="isAuthor" (click)="deleteEvent()" class="ui yellow button">Delete</button>
       </div>
     </div>
@@ -57,6 +57,9 @@
               </div>
               <div class="text">
                 {{ comment.content }}
+              </div>
+              <div class="actions" *ngIf="comment.isAuth">
+                <a class="save" (click)="deleteComment(comment.id)">Delete</a>
               </div>
             </div>
           </div>
