@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-const apiRootUrl = 'http://localhost:8080';
+const apiRootUrl = 'http://13.124.142.75:8080';
 
 @Injectable()
 export class ServerService {
