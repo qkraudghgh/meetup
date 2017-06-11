@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/fullcalendar/dist/fullcalendar.min.css",
         "styles.css"
       ],
       "scripts": [
