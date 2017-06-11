@@ -22,6 +22,7 @@ export class DetailsComponent implements OnInit {
   participants: object;
   isJoin: boolean;
   username: string;
+  participantsNum: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private server: ServerService) {}
 
@@ -42,8 +43,8 @@ export class DetailsComponent implements OnInit {
           authorImgUrl: res.owner.avatar,
           categoryTitle: res.category.title,
           description: res.description,
-          startDate: res.datetime.start,
-          endDate: res.datetime.end,
+          startDate: moment(res.datetime.start).format('YY-MM-DD HH:mm'),
+          endDate: moment(res.datetime.end).format('YY-MM-DD HH:mm'),
           locationDetail: res.place.title,
           lat: res.place.lat,
           lng: res.place.lon,
@@ -65,6 +66,7 @@ export class DetailsComponent implements OnInit {
     this.server.getParticipants(eventId).subscribe(
       (res) => {
         this.participants = res;
+        this.participantsNum = res.length;
         this.isJoin = false;
         _.forEach(res, participant => {
           this.isJoin = participant.name === this.username;

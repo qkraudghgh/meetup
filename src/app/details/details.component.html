@@ -14,6 +14,11 @@
           </div>
         </div>
         <div class="meta">
+          <i class="icon calendar"></i>
+          <span class="ui basic label">{{ event.startDate }}</span> ~ <span class="ui basic label">{{ event.endDate }}</span>
+        </div>
+        <br *ngIf="participantsNum > 0">
+        <div class="meta" *ngIf="participantsNum > 0">
           Participant
           <br>
           <span class="ui image label participants" *ngFor="let participant of participants">
