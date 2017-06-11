@@ -15,10 +15,11 @@
         </div>
         <div class="meta">
           Participant
-          <a class="ui image label" *ngFor="let participant of participants">
-            <img src="{{ participant.imgUrl }}">
+          <br>
+          <span class="ui image label participants" *ngFor="let participant of participants">
+            <img src="{{ participant.avatar }}">
             @{{ participant.name }}
-          </a>
+          </span>
         </div>
         <p></p>
         <div class="description">
@@ -28,9 +29,10 @@
         </div>
       </div>
       <div class="extra content">
-        <button *ngIf="!isAuthor" class="ui green button">Join Meetup</button>
-        <button *ngIf="isAuthor" [routerLink]="['/edit', eventId]" class="ui red button">Edit</button>
-        <button *ngIf="isAuthor" (click)="deleteEvent()" class="ui yellow button">Delete</button>
+        <button *ngIf="!isAuthor && !isJoin" (click)="joinMeetup()" class="ui green button">Join Meetup</button>
+        <button *ngIf="!isAuthor && isJoin" (click)="disJoinMeetup()" class="ui red button">Disjoin Meetup</button>
+        <button *ngIf="isAuthor" [routerLink]="['/edit', eventId]" class="ui yellow button">Edit</button>
+        <button *ngIf="isAuthor" (click)="deleteEvent()" class="ui red button">Delete</button>
       </div>
     </div>
     <h4 class="ui dividing header">Check location: {{ event.locationDetail }}

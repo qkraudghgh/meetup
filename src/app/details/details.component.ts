@@ -19,13 +19,18 @@ export class DetailsComponent implements OnInit {
   comment: string;
   comments: object;
   isAuthor: boolean;
+  participants: object;
+  isJoin: boolean;
+  username: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private server: ServerService) {}
 
   ngOnInit() {
     this.eventId = this.route.snapshot.params['id'];
+    this.username = localStorage.getItem('username');
     this.getEventDetail(this.eventId);
     this.getEventComments(this.eventId);
+    this.getParticipants(this.eventId);
   }
 
   getEventDetail(eventId: number) {
@@ -36,7 +41,6 @@ export class DetailsComponent implements OnInit {
           author: res.owner.name,
           authorImgUrl: res.owner.avatar,
           categoryTitle: res.category.title,
-          participants: res.participants,
           description: res.description,
           startDate: res.datetime.start,
           endDate: res.datetime.end,
@@ -46,13 +50,28 @@ export class DetailsComponent implements OnInit {
           updated: moment(res.updated_at).fromNow()
         };
 
-        if (this.event['author'] === localStorage.getItem('username')) {
+        if (this.event['author'] === this.username) {
           this.isAuthor = true;
         }
       },
       (error) => {
         alert('해당 모임이 존재하지 않습니다.');
         this.router.navigate(['../']);
+      }
+    );
+  }
+
+  getParticipants(eventId: number) {
+    this.server.getParticipants(eventId).subscribe(
+      (res) => {
+        this.participants = res;
+        this.isJoin = false;
+        _.forEach(res, participant => {
+          this.isJoin = participant.name === this.username;
+        });
+      },
+      (error) => {
+
       }
     );
   }
@@ -103,6 +122,22 @@ export class DetailsComponent implements OnInit {
         }
       );
     }
+  }
+
+  joinMeetup() {
+    this.server.joinMeetup(this.eventId).subscribe(
+      (res) => {
+        this.getParticipants(this.eventId);
+      }
+    );
+  }
+
+  disJoinMeetup() {
+    this.server.disJoinMeetup(this.eventId).subscribe(
+      (res) => {
+        this.getParticipants(this.eventId);
+      }
+    );
   }
 
   onSubmit() {

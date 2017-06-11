@@ -1,5 +1,5 @@
 .ui.card.wrapper {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
   margin-top: 2%;
 }
@@ -9,7 +9,12 @@ span.ui.image.label.author {
   display: inline-flex;
 }
 
-span.ui.image.label.author > img {
+span.ui.image.label.participants {
+  top: 7px;
+  display: inline-flex;
+}
+
+span.ui.image.label > img {
   margin-right: 3px;
 }
 
@@ -41,7 +46,7 @@ div.content > div.header > div.meta > span {
 }
 
 .location {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 

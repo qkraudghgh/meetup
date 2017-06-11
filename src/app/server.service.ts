@@ -33,6 +33,12 @@ export class ServerService {
     }).map(res => res.json());
   }
 
+  getParticipants(eventId: number) {
+    return this.http.get(`${apiRootUrl}/events/${eventId}/participants`, {
+      headers: this.setHeader()
+    }).map(res => res.json());
+  }
+
   getLoginToken(code: string) {
     return this.http.get(`${apiRootUrl}/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
   }
@@ -40,6 +46,18 @@ export class ServerService {
   getGeocode(location: string) {
     return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}& \
     key=${'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'}`);
+  }
+
+  joinMeetup(eventId: number) {
+    return this.http.put(`${apiRootUrl}/events/${eventId}/join`, {}, {
+      headers: this.setHeader()
+    });
+  }
+
+  disJoinMeetup(eventId: number) {
+    return this.http.delete(`${apiRootUrl}/events/${eventId}/join`, {
+      headers: this.setHeader()
+    });
   }
 
   createEvent(req: object) {
