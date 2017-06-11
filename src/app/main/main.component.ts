@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 
 import * as _ from 'lodash';
+import { environment } from '../../environments/environment';
 
 @Component({
   templateUrl: './main.component.html',
@@ -12,8 +13,8 @@ export class MainAppComponent implements OnInit {
 
   events: any;
   isLogin = false;
-  clientId = '193315155424.194788594150';
-  authUrl = 'http://localhost:4200/auth';
+  clientId = environment.slackClientId;
+  authUrl = `${environment.webUrl}/auth`;
 
   calendarOptions: Object = {
     fixedWeekCount : false,

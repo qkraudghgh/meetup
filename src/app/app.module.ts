@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
 import { DateTimePickerModule } from 'ng-pick-datetime';
-import { AgmCoreModule } from 'angular2-google-maps/core';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainAppComponent } from './main/main.component';
@@ -18,6 +18,7 @@ import { AuthGuard } from './auth-guard.service';
 import { ServerService } from './server.service';
 import { AuthRedirectComponent } from './redirect/auth-redirect.component';
 import { EditComponent } from './edit/edit.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { EditComponent } from './edit/edit.component';
     AppRoutingModule,
     DateTimePickerModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'
+      apiKey: environment.googleApiKey
     })
   ],
   providers: [

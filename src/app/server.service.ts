@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
 
-const apiRootUrl = 'http://13.124.142.75:8080';
+const apiRootUrl = environment.apiRootUrl;
 
 @Injectable()
 export class ServerService {
@@ -45,7 +46,7 @@ export class ServerService {
 
   getGeocode(location: string) {
     return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}& \
-    key=${'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'}`);
+    key=${environment.googleApiKey}`);
   }
 
   joinMeetup(eventId: number) {
