@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
 
 const apiRootUrl = environment.apiRootUrl;
+const webUrl = environment.webUrl;
 
 @Injectable()
 export class ServerService {
@@ -41,7 +42,7 @@ export class ServerService {
   }
 
   getLoginToken(code: string) {
-    return this.http.get(`${apiRootUrl}/auth?code=${code}&redirect_uri=http://localhost:4200/auth`);
+    return this.http.get(`${apiRootUrl}/auth?code=${code}&redirect_uri=${webUrl}/auth`);
   }
 
   getGeocode(location: string) {
