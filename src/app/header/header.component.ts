@@ -9,8 +9,6 @@ import { AuthService } from '../auth.service';
 
 export class HeaderComponent implements OnInit {
   private loggedIn: boolean;
-  clientId = '193315155424.194788594150';
-  authUrl = 'http://localhost:4200/auth';
 
   constructor(private authService: AuthService) {
     if (localStorage.getItem('session') === 'true') {

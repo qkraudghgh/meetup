@@ -9,7 +9,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { CalendarAppComponent } from './calendar/calendar.component';
+import { MainAppComponent } from './main/main.component';
 import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
 import { AppRoutingModule } from './app-routing-module';
@@ -20,32 +20,32 @@ import { AuthRedirectComponent } from './redirect/auth-redirect.component';
 import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        CalendarAppComponent,
-        CalendarComponent,
-        DetailsComponent,
-        CreateComponent,
-        AuthRedirectComponent,
-        EditComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        DateTimePickerModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'
-        })
-    ],
-    providers: [
-        AuthService,
-        AuthGuard,
-        ServerService,
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    MainAppComponent,
+    CalendarComponent,
+    DetailsComponent,
+    CreateComponent,
+    AuthRedirectComponent,
+    EditComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    DateTimePickerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDaPW1vqyEsyZfCmszXr9_yuWZJh9UrWlw'
+    })
+  ],
+  providers: [
+    AuthService,
+    AuthGuard,
+    ServerService,
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CalendarAppComponent } from './calendar/calendar.component';
+import { MainAppComponent } from './main/main.component';
 import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
 import { AuthGuard } from './auth-guard.service';
@@ -8,7 +8,7 @@ import { AuthRedirectComponent } from './redirect/auth-redirect.component';
 import { EditComponent } from './edit/edit.component';
 
 const appRoutes: Routes = [
-  { path: '', component: CalendarAppComponent },
+  { path: '', component: MainAppComponent },
   { path: 'auth', component: AuthRedirectComponent },
   { path: 'details/:id', component: DetailsComponent},
   { path: 'create', canActivate: [AuthGuard], component: CreateComponent },

@@ -4,14 +4,16 @@ import { ServerService } from '../server.service';
 import * as _ from 'lodash';
 
 @Component({
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
 
-export class CalendarAppComponent implements OnInit {
+export class MainAppComponent implements OnInit {
 
   events: any;
   isLogin = false;
+  clientId = '193315155424.194788594150';
+  authUrl = 'http://localhost:4200/auth';
 
   calendarOptions: Object = {
     fixedWeekCount : false,
