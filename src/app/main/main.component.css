@@ -1,0 +1,18 @@
+div.ui.card {
+  width: 100%;
+  margin: 0 auto;
+  height: 95%;
+}
+
+div.ui.card > .content {
+  width: 65%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-device-width: 736px) {
+  div.ui.card > .content {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+

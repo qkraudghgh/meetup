@@ -1,0 +1,83 @@
+.ui.card.wrapper {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
+span.ui.image.label.author {
+  top: 7px;
+  display: inline-flex;
+}
+
+span.ui.image.label.participants {
+  top: 7px;
+  display: inline-flex;
+}
+
+span.ui.image.label > img {
+  margin-right: 3px;
+}
+
+.comment {
+  width: 100%;
+}
+
+.detail-title {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+div.content > div.header {
+}
+
+div.content > div.header > div.meta {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+div.content > div.header > div.meta > span {
+  color: #565656;
+}
+
+.detail {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.location {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.location > .content > sebm-google-map {
+  width: 100%;
+  height: 500px;
+}
+
+.comments {
+  max-width: inherit;
+}
+
+.ui.teal.tag.label {
+  bottom: 4px;
+}
+
+div.ui.card.comment > div > div > form > div > textarea {
+  height: 5em;
+}
+
+@media only screen and (max-device-width: 736px) {
+  .ui.card.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 2%;
+  }
+
+  .location > .content > sebm-google-map {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+

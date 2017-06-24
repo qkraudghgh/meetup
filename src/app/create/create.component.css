@@ -1,0 +1,23 @@
+.ui.card {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
+.ui.card.location {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.location > .content > sebm-google-map {
+  width: 100%;
+  height: 500px;
+}
+
+@media only screen and (max-device-width: 736px) {
+  .ui.card {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 2%;
+  }
+}
