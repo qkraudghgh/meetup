@@ -34,10 +34,11 @@
         <div class="required field">
           <label>StartDate</label>
           <input class="picker-input" id="time-input-1"
-                 [ngModel]="startDate | date: 'MMMM dd, y HH:mm'"
-                 [(dateTimePicker)]="startDate"
+                 [value]="startDate | date: 'MMMM dd, y HH:mm'"
+                 [(ngModel)]="startDate"
                  name="startDate"
                  placeholder="Click and Set Time"
+                 dateTimePicker
                  readonly
                  required
           >
@@ -45,10 +46,11 @@
         <div class="required field">
           <label>EndDate</label>
           <input class="picker-input" id="time-input-2"
-                 [ngModel]="endDate | date: 'MMMM dd, y HH:mm'"
-                 [(dateTimePicker)]="endDate"
+                 [value]="endDate | date: 'MMMM dd, y HH:mm'"
+                 [(ngModel)]="endDate"
                  name="endDate"
                  placeholder="Click and Set Time"
+                 dateTimePicker
                  readonly
                  required
           >
