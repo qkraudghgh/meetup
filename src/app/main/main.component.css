@@ -9,6 +9,19 @@ div.ui.card > .content {
   margin: 0 auto;
 }
 
+div.ui.card > .content > div.ui.message > h1.ui.header {
+  margin-bottom: 15px;
+}
+
+div.ui.card > .content > div.ui.message > p {
+  margin-bottom: 15px;
+}
+
+div.ui.card > .content > div.ui.message > h4 {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 @media only screen and (max-device-width: 736px) {
   div.ui.card > .content {
     width: 100%;

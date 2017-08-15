@@ -1,20 +1,20 @@
 <div class="ui card">
   <div class="content">
     <form class="ui form" (ngSubmit)="onSubmit()" #f="ngForm">
-      <h4 class="ui dividing header">Meetup Information</h4>
+      <h4 class="ui dividing header">밋업 정보</h4>
       <div class="two fields">
         <div class="required field">
-          <label>Title</label>
+          <label>밋업 제목</label>
           <input
             type="text"
             name="title"
-            placeholder="Meetup Title"
+            placeholder="밋업 제목을 적어주세요"
             [(ngModel)]="title"
             required
           >
         </div>
         <div class="required field">
-          <label>Category</label>
+          <label>카테고리</label>
           <select
             class="ui fluid dropdown"
             [(ngModel)]="categoryId"
@@ -25,59 +25,59 @@
               value=""
               disabled
               selected
-            >Choose the category</option>
+            >카테고리를 선택해주세요</option>
             <option *ngFor="let item of category" [(value)]="item.id">{{ item.title }}</option>
           </select>
         </div>
       </div>
       <div class="two fields">
         <div class="required field">
-          <label>StartDate</label>
+          <label>시작 시간</label>
           <input class="picker-input" id="time-input-1"
                  [value]="startDate | date: 'MMMM dd, y HH:mm'"
                  [(ngModel)]="startDate"
                  name="startDate"
-                 placeholder="Click and Set Time"
+                 placeholder="이곳을 눌러 시간을 정해주세요"
                  dateTimePicker
                  readonly
                  required
           >
         </div>
         <div class="required field">
-          <label>EndDate</label>
+          <label>종료 시간</label>
           <input class="picker-input" id="time-input-2"
                  [value]="endDate | date: 'MMMM dd, y HH:mm'"
                  [(ngModel)]="endDate"
                  name="endDate"
-                 placeholder="Click and Set Time"
+                 placeholder="이곳을 눌러 시간을 정해주세요"
                  dateTimePicker
                  readonly
                  required
           >
         </div>
       </div>
-      <h4 class="ui dividing header">Location Information</h4>
+      <h4 class="ui dividing header">밋업 장소 정보</h4>
       <div class="required field">
-        <label>Location description</label>
+        <label>장소에 대해 자세히 적어주세요</label>
         <input
           type="text"
           name="locationDetail"
-          placeholder="Location detail"
+          placeholder="세부 장소"
           [(ngModel)]="locationDetail"
           required
         >
       </div>
       <div class="required field">
-        <label>Search Location</label>
+        <label>장소 찾기</label>
         <div class="ui action input">
-          <input type="text" [(ngModel)]="location" name="location"/>
+          <input type="text" [(ngModel)]="location" name="location" placeholder="자세히 적을수록 정확도가 올라갑니다."/>
           <div (click)="searchLocation()" class="ui teal right labeled icon button">
             <i class="search icon"></i>
-            Search
+            찾기
           </div>
         </div>
       </div>
-      <h4 *ngIf="finishSearch" class="ui dividing header">Check location</h4>
+      <h4 *ngIf="finishSearch" class="ui dividing header">장소 확인</h4>
       <div *ngIf="finishSearch" class="ui card location">
         <div class="content">
           <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="17">
@@ -85,9 +85,9 @@
           </sebm-google-map>
         </div>
       </div>
-      <h4 class="ui dividing header">Description</h4>
+      <h4 class="ui dividing header">밋업 정보</h4>
       <div class="required field">
-        <label>Description</label>
+        <label>밋업 설명</label>
         <textarea rows="3" [(ngModel)]="description" name="description" required></textarea>
       </div>
       <button
@@ -95,7 +95,7 @@
         tabindex="0"
         type="submit"
         [disabled]="!f.valid"
-      >Edit Meetup</button>
+      >수정하기</button>
       <div (click)="clear()" class="ui red button" tabindex="0">Clear</div>
     </form>
   </div>

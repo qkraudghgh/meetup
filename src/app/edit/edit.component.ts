@@ -118,33 +118,32 @@ export class EditComponent implements OnInit {
 
   validation() {
     const eventValues = this.eventForm.value;
-    console.log(eventValues);
     if (!eventValues.title) {
-      alert('Please write Title');
+      alert('제목을 적어주세요');
       return false;
     }
     if (!eventValues.categoryId) {
-      alert('Please select Category');
+      alert('카테고리를 선택해주세요');
       return false;
     }
     if (!eventValues.startDate) {
-      alert('Please select StartTime');
+      alert('시작 시간을 정해주세요');
       return false;
     }
     if (!eventValues.endDate) {
-      alert('Please select EndTime');
+      alert('종료 시간을 정해주세요');
       return false;
     }
     if (!eventValues.description) {
-      alert('Please Write Description');
+      alert('밋업 설명을 적어주세요');
       return false;
     }
     if (!this.lat || !this.lng) {
-      alert('Please Search Location');
+      alert('장소를 정해주세요');
       return false;
     }
     if (moment(eventValues.endDate) - moment(eventValues.startDate) < 0) {
-      alert('End date can not be earlier than start date');
+      alert('종료시간이 시작시간보다 빠를 수 없습니다!');
       return false;
     }
     return true;

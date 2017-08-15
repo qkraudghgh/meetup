@@ -4,9 +4,27 @@
   </div>
   <div *ngIf="!isLogin" class="content">
     <div class="ui message">
-      <h1 class="ui header">Hello, Friends!</h1>
-      <p>You need a login to open a good and fun meeting!</p>
+      <h1 class="ui header">안녕하세요!</h1>
+      <p>
+        밋업을 이용하기 위해선 로그인해아합니다! 아래 버튼을 눌러 로그인해주세요.
+        <br>
+        만약 에러가 발생한다면 redirect url을 살펴보고 9xd 주소가 알맞게 들어가 있는지 확인해주세요.
+        <br>
+        그래도 안된다면 9xd 슬랙 웹에 한번 접속하신 후에 사용해주세요!
+        <br>
+        아직도 안된다면.. 마지막 수단으로 아래 만든사람들에게 DM 주세요.
+      </p>
       <a href="https://slack.com/oauth/authorize?scope=users:read&client_id={{clientId}}&redirect_uri={{authUrl}}"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+      <br>
+      <h4>만든 사람:</h4>
+      <a class="ui image label">
+        <img src="https://secure.gravatar.com/avatar/eabc5b464bf5354ff5252c10d379474d.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2F66f9%2Fimg%2Favatars%2Fava_0025-72.png">
+        @myoungho.pak
+      </a>
+      <a class="ui image label">
+        <img src="https://secure.gravatar.com/avatar/fd499da83c64b36cb1d4ae708bb87a15.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2F66f9%2Fimg%2Favatars%2Fava_0014-72.png">
+        @mingrammer
+      </a>
     </div>
   </div>
 </div>

@@ -79,14 +79,14 @@ export class DetailsComponent implements OnInit {
   }
 
   deleteEvent() {
-    if (confirm('Are you sure you want to delete it?')) {
+    if (confirm('정말로 지우시겠습니까?')) {
       return this.server.deleteEvent(this.eventId).subscribe(
         (res) => {
-          alert('Successfully deleted.');
+          alert('성공적으로 밋업이 삭제되었습니다.');
           this.router.navigate(['../']);
         },
         (error) => {
-          alert('You can not delete it.');
+          alert('지울 수 없습니다.');
         }
       );
     }
@@ -114,13 +114,13 @@ export class DetailsComponent implements OnInit {
   }
 
   deleteComment(commentId: number) {
-    if (confirm('Are you sure you want to delete it?')) {
+    if (confirm('정말로 지우시겠습니까?')) {
       return this.server.deleteComment(this.eventId, commentId).subscribe(
         (res) => {
           this.getEventComments(this.eventId);
         },
         (error) => {
-          alert('You can not delete it.');
+          alert('지울 수 없습니다.');
         }
       );
     }
@@ -144,7 +144,7 @@ export class DetailsComponent implements OnInit {
 
   onSubmit() {
     if (!this.comment) {
-      alert('Please write comment');
+      alert('내용을 적어주세요');
       return;
     }
 

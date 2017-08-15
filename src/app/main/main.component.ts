@@ -21,13 +21,14 @@ export class MainAppComponent implements OnInit {
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'month,basicWeek,basicDay'
+      right: 'month,basicWeek,basicDay',
     },
     editable: false,
     height: 'parent',
     eventLimit: true, // allow "more" link when too many events
     timeFormat: 'H:mm',
     events: [],
+    locale: 'ko',
   };
 
   constructor(private server: ServerService) {}
@@ -43,7 +44,7 @@ export class MainAppComponent implements OnInit {
                 title: data['title'],
                 start: data['datetime']['start'],
                 end: data['datetime']['end'],
-                url: `/details/${data['id']}`
+                url: `/details/${data['id']}`,
               };
             });
             this.calendarOptions['events'] = this.events;
