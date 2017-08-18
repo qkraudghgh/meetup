@@ -95,8 +95,8 @@ export class EditComponent implements OnInit {
   getEventDetail(eventId: number) {
     this.serverService.getEventDetail(eventId).subscribe(
       (res) => {
-        this.startDate = res.datetime.start;
-        this.endDate = res.datetime.end;
+        this.startDate = moment(res.datetime.start, 'YYYY-MM-DD[T]HH:mm:ss[Z]').utc(0).format('YYYY-MM-DD[T]HH:mm:ss[Z]');
+        this.endDate = moment(res.datetime.end, 'YYYY-MM-DD[T]HH:mm:ss[Z]').utc(0).format('YYYY-MM-DD[T]HH:mm:ss[Z]');
         this.categoryId = res.category.id;
         this.title = res.title;
         this.locationDetail = res.place.title;
@@ -104,7 +104,7 @@ export class EditComponent implements OnInit {
         this.lng = res.place.lon;
         this.description = res.description;
         this.finishSearch = true;
-        if (this.event['author'] !== localStorage.getItem('username')) {
+        if (res['owner']['name'] !== localStorage.getItem('username')) {
           alert('수정 권한이 존재하지 않습니다.');
           this.router.navigate(['../']);
         }
